@@ -9,3 +9,4 @@
   <li>if everything is ok, run this command <br><b>java -jar target/GambleGame-1.0.jar --config config.json --betting-amount 200</b></li>
 </ul>
 <p> you will get something like this:</p>
+<img alt="exmple-result" src="example-result.png">
