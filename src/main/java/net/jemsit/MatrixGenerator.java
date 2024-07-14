@@ -53,7 +53,10 @@ public class MatrixGenerator {
                 .findFirst();
         if (data.isEmpty()) throw new RuntimeException("Exception in Matrix Generator class, no Symbol like this"+col + row);
         int sumOfProbabilities = findSumOfProbabilities(data.get().getSymbols());
-        int random = (int) (Math.random() * sumOfProbabilities);
+        int random = 0;
+        while (random == 0) {
+            random = (int) (Math.random() * sumOfProbabilities);
+        }
         var probabilities = createMapOfProbabilities(data.get().getSymbols(), sumOfProbabilities);
         for (Map.Entry<String, List<Integer>> currentState : probabilities.entrySet()) {
             if (currentState.getValue().contains(random)) {
@@ -65,15 +68,21 @@ public class MatrixGenerator {
     }
 
     public String getRandomBonusSymbolForCell() {
-
-        int random = (int) (Math.random() * 15);
+        var data = probabilities
+                .getBonusSymbols()
+                .get("symbols");
+        int sum = findSumOfProbabilities(data);
+        int random = 0;
+        while (random == 0) {
+            random = (int) (Math.random() * sum);
+        }
+        var probabilities = createMapOfProbabilities(data, sum);
         String result = "";
-        switch (random) {
-            case 1 -> result= "10x";
-            case 2,3 -> result= "5x";
-            case 4,5,6 -> result= "+1000";
-            case 7,8,9,10 -> result= "+500";
-            case 11,12,13,14,15 -> result= "MISS";
+        for (Map.Entry<String, List<Integer>> currentState : probabilities.entrySet()) {
+            if (currentState.getValue().contains(random)) {
+                result = currentState.getKey();
+                break;
+            }
         }
         return result;
     }
