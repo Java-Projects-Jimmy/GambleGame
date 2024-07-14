@@ -25,6 +25,9 @@ public class MatrixGenerator {
         generateRandomMatrix();
     }
 
+    public MatrixGenerator() {
+    }
+
     public void generateRandomMatrix() {
         for (int i = 0; i <columns ; i++) {
             for (int j = 0; j < rows; j++) {
@@ -95,7 +98,7 @@ public class MatrixGenerator {
         return getRandomStandardSymbolForCell(col,row);
     }
 
-    private int findSumOfProbabilities(Map<String,Integer> symbols) {
+    public int findSumOfProbabilities(Map<String,Integer> symbols) {
         int sum = 0;
         for (Map.Entry<String, Integer> entry : symbols.entrySet()) {
             sum += entry.getValue();
@@ -103,7 +106,7 @@ public class MatrixGenerator {
         return sum;
     }
 
-    private HashMap<String, List<Integer>> createMapOfProbabilities(Map<String, Integer> symbols, int sum) {
+    public HashMap<String, List<Integer>> createMapOfProbabilities(Map<String, Integer> symbols, int sum) {
         HashMap<String, List<Integer>> probabilities = new HashMap<>();
         int value = 1;
         for (Map.Entry<String, Integer> entry : symbols.entrySet()) {

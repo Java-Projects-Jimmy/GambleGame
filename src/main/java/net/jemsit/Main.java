@@ -9,8 +9,8 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         ObjectMapper objectMapper = new ObjectMapper();
-        String configFileAddress = "";
-        int bettingAmount = 0;
+        String configFileAddress = "config.json";
+        int bettingAmount = 100;
         try {
             for (int i = 0; i < args.length; i++) {
                 switch (args[i]) {

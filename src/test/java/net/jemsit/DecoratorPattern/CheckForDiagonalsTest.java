@@ -4,6 +4,11 @@ import junit.framework.TestCase;
 import net.jemsit.Config;
 import org.junit.Test;
 
+import java.util.HashMap;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
+
 public class CheckForDiagonalsTest extends TestCase {
 
     @Test
@@ -14,11 +19,16 @@ public class CheckForDiagonalsTest extends TestCase {
                 {"A", "E", "C"},
                 {"E", "F", "E"}
         };
-        Config config = new Config();
-        WinAmount amount = new WinningCombination(givenMatrix, 200, config);
+        WinAmount amount = new WinningCombination(givenMatrix, 200, new Config());
         //when
-        amount = new CheckForDiagonals(amount);
+        CheckForDiagonals underTest = new CheckForDiagonals(amount);
+        var result = (HashMap)underTest.diagonals;
         //then
+        assertThat(result.size()).isEqualTo(1);
+        result.forEach((key,value)->{
+            assertThat(key).isEqualTo("E");
+            assertThat(value).isEqualTo(2.0);
+        });
     }
 
 }

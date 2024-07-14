@@ -17,6 +17,13 @@ public class Config {
     private Map<String, SymbolDetails> symbols;
     private Probability probabilities;
 
+    private Map<Integer, Double> sameSymbolWinningCombination = new HashMap<>();
+    private Map<String, Double> standardSymbols = new HashMap<>();
+    private Map<String, Double> multipleRewardSymbols = new HashMap<>();
+    private Map<String, Double> extraBonusSymbols = new HashMap<>();
+    private Map<String, Double> linearSymbols = new HashMap<>();
+    private Map<String, Double> diagonalSymbols = new HashMap<>();
+
     public void setColumns(int columns) {
         this.columns = columns-1;
     }
@@ -29,9 +36,15 @@ public class Config {
     private Map<String, WinCombination> winCombinations;
 
     public void setWinCombinations(Map<String, WinCombination> winCombinations) {
-        winCombinations.entrySet().stream().forEach(el->{
+        winCombinations.entrySet().forEach(el->{
             if (el.getValue().getGroup().equals("same_symbols")) {
                 sameSymbolWinningCombination.put(el.getValue().getCount(),  el.getValue().getRewardMultiplier());
+            }
+            if (el.getValue().getGroup().equals("horizontally_linear_symbols") || el.getValue().getGroup().equals("vertically_linear_symbols")){
+                linearSymbols.put(el.getValue().getGroup(), el.getValue().getRewardMultiplier());
+            }
+            if (el.getValue().getGroup().equals("ltr_diagonally_linear_symbols") || el.getValue().getGroup().equals("rtl_diagonally_linear_symbols")){
+                diagonalSymbols.put(el.getValue().getGroup(), el.getValue().getRewardMultiplier());
             }
         });
         this.winCombinations = winCombinations;
@@ -50,10 +63,7 @@ public class Config {
         this.symbols = symbols;
     }
 
-    private Map<Integer, Double> sameSymbolWinningCombination = new HashMap<>();
-    private Map<String, Double> standardSymbols = new HashMap<>();
-    private Map<String, Double> multipleRewardSymbols = new HashMap<>();
-    private Map<String, Double> extraBonusSymbols = new HashMap<>();
+
 }
 
 

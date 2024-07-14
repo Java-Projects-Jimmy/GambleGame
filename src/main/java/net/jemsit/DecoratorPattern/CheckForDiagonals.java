@@ -50,7 +50,9 @@ public class CheckForDiagonals extends WinningCombination {
                     key,
                     new HashMap<>(Map.of("same_symbols_straight_line", 0.0)
                     ));
-            newValue.put("same_symbols_straight_line", value*2);
+            newValue.put("same_symbols_straight_line",
+                    value*config.getDiagonalSymbols().get("ltr_diagonally_linear_symbols")
+            );
             updated.put(
                     key,
                     newValue
