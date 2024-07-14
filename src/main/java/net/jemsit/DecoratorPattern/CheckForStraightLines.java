@@ -26,7 +26,6 @@ public class CheckForStraightLines extends WinningCombination {
                     straightLineSameSymbols.put(
                             givenMatrix[i][0],
                             straightLineSameSymbols.getOrDefault(givenMatrix[i][0], 0.0) + 1);
-                    System.out.println("rows");
                 }
             }
         }
@@ -39,7 +38,6 @@ public class CheckForStraightLines extends WinningCombination {
                     straightLineSameSymbols.put(
                             givenMatrix[0][j],
                             straightLineSameSymbols.getOrDefault(givenMatrix[0][j], 0.0) + 1);
-                    System.out.println("columns");
                     j++;
                     i = 0;
                     if (j > givenMatrix[i].length-1) break;
