@@ -50,7 +50,6 @@ public class CheckForStraightLines extends WinningCombination {
                 if (j > givenMatrix[i].length-1) break;
             }
         }
-        System.out.println("straightLineSameSymbols => " + straightLineSameSymbols);
     }
 
     @Override
